@@ -2,6 +2,7 @@ trigger:
 - main
 
 pool:
+  agentPool: myhost
   vmImage: ubuntu-latest
 
 steps:
