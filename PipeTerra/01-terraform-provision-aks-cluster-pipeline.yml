@@ -1,5 +1,5 @@
 trigger:
-- master
+- main
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -25,7 +25,7 @@ stages:
       - task: PublishPipelineArtifact@1
         displayName: Publish Artifacts
         inputs:
-          targetPath: '$(System.DefaultWorkingDirectory)/terraform-manifests'
+          targetPath: '$(System.DefaultWorkingDirectory)/PipeTerra/terraform-manifests/'
           artifact: 'terraform-manifests-out'
           publishLocation: 'pipeline'
       - task: TerraformInstaller@0
@@ -36,7 +36,7 @@ stages:
         displayName: Terraform Init
         inputs:
           command: 'init'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/PipeTerra/terraform-manifests/'
           backendType: 'azurerm'
           backendServiceArm: 'terraform-aks-azurerm-svc-con'
           backendAzureRmResourceGroupName: 'terraform-storage-rg'
@@ -48,7 +48,7 @@ stages:
         displayName: Terraform Validate
         inputs:
           command: 'validate'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/PipeTerra/terraform-manifests/'
           allowTelemetryCollection: false
 
 # Stage-2: Deploy Stages for Dev & QA
