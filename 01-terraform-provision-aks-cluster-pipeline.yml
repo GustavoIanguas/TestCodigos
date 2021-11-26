@@ -1,7 +1,9 @@
 trigger:
 - main
 
-pool: myhost
+pool: 
+  pool: myhost
+  vmImage: 'ubuntu-latest'
 
 # Define Variables for Environments
 variables:
